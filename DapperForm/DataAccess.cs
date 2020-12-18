@@ -15,6 +15,7 @@ namespace DapperForm
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("SampleDb")))
             {
                 //var output = connection.Query<Person>($"select * from People where LastName = '{lastName}' ").ToList(); not recommended 
+                //var output = connection.Query<Person>($"select * from People where LastName = @LastName ", new { LastName = lastName }).ToList(); 
                 var output = connection.Query<Person>("dbo.People_GetByLastName @LastName", new { LastName = lastName }).ToList();
                 return output;
             }
